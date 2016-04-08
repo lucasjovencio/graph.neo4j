@@ -1,7 +1,7 @@
-<?php header("content-type: text/html; charset=utf-8");
-		require_once("../componentes/includes/classes/funcoes.class.php");
-		$Comando = new Funcao();
-		$pais = $Comando->CypherQuery('MATCH (n:pais) RETURN n.nome as pais');
+<?php   include("../dependencia/query.php"); // Caso você tenha criado um novo diretorio no diretorio HTML
+		//include("dependencia/query.php"); // Caso você use o prorio diretorio html
+		//include("query.php");             // Caso você crie dentro do diretorio dependencia
+		$pais = cypher_query('MATCH (n:pais) RETURN n.nome as pais');
 		$node = array(); 
 		$link = array();
 		$i = 0;
@@ -14,7 +14,7 @@
 			$i++;
 			$node[] = $pa; 
 		}
-		$estado = $Comando->CypherQuery('MATCH (n:estado)-[r:pais]->(pa:pais) RETURN n.nome as es, pa.nome as pa');
+		$estado = cypher_query('MATCH (n:estado)-[r:pais]->(pa:pais) RETURN n.nome as es, pa.nome as pa');
 		foreach ($estado as $key) {
 			$es = array(); 
 			$linkAUX = array();
@@ -37,7 +37,7 @@
 			$node[] = $es; 
 			$i++;
 		}
-		$moradores = $Comando->CypherQuery("MATCH (p:pessoa)-[r:end]->(end:estado) RETURN p.nome as nome, end.nome as es ORDER BY RAND() LIMIT 100");
+		$moradores = cypher_query("MATCH (p:pessoa)-[r:end]->(end:estado) RETURN p.nome as nome, end.nome as es ORDER BY RAND() LIMIT 100");
 		foreach ($moradores as $key)
 		{
 			$user = array();
