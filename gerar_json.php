@@ -31,7 +31,7 @@
 				}
 			}
 			$linkAUX['source'] = $i;
-			$linkAUX['target'] = $numero; 
+			$linkAUX['target'] = $numero;  
 			$linkAUX['value'] = 1; 
 			$link[] = $linkAUX;
 			$node[] = $es; 
