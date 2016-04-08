@@ -17,7 +17,7 @@
 		$estado = $Comando->CypherQuery('MATCH (n:estado)-[r:pais]->(pa:pais) RETURN n.nome as es, pa.nome as pa');
 		foreach ($estado as $key) {
 			$es = array(); 
-			$linkAUX = array();=
+			$linkAUX = array();
 			$es['name'] = $key['es'];
 			$es['group'] = mt_rand(11, 20);
 			$es['ID'] = $i; 
